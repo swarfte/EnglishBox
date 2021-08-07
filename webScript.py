@@ -11,7 +11,7 @@ def GetEveryDayEnglish():
 
     root = bs4.BeautifulSoup(data, "html.parser")#*按html的格式解碼
     english_native = root.find("div",id = "english_word_box")#*找出關鍵的位置
-    english_choose = re.compile(r"\>[a-z]+\<")#*找出關鍵字
+    english_choose = re.compile(r"\>[a-z]+\s?[a-z]*\<")#*找出關鍵字
     english_word = re.search(english_choose,str(english_native)).group()#*獲取過濾後的字符串
     english_use = english_word[1:-1]#*過濾頭尾
 
@@ -27,7 +27,7 @@ def GetEveryDayEnglish():
     
     return output
 
-def SaveEnglishWord(EnglishWord,FileName = "./EnglishWord.json"):
+def SaveWord(EnglishWord,FileName = "./Word.json"):
     with open(FileName, "r+",encoding='utf-8') as File:
         native = json.dumps(EnglishWord)#*把單引號轉為雙引號
         data = json.loads(native)#*準備寫入的新資料
@@ -41,3 +41,6 @@ def SaveEnglishWord(EnglishWord,FileName = "./EnglishWord.json"):
     
     with open(FileName, "w",encoding="utf-8") as File: #*寫入新的資料
         json.dump(old_data,File,ensure_ascii=False)#*禁用ascii碼
+        
+if __name__ == "__main__":
+    GetEveryDayEnglish()
