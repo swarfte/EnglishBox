@@ -1,9 +1,9 @@
 import json
 
 def CreateLibrary(root="./Word.json",save="./Library.json"):
-    with open(root, "r+") as use:#*讀取每日英文
+    with open(root, "r+",encoding="utf-8") as use:#*讀取每日英文
         change = json.load(use)
-        with open(save, "r+") as old:#*讀取練習庫
+        with open(save, "r+",encoding="utf-8") as old:#*讀取練習庫
             old_data = json.load(old)
             for k,v in change.items():#*對每個新的生字進行檢查
                 check = True #*用作檢測

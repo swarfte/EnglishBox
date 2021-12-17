@@ -3,7 +3,7 @@ import random as rd #*生成隨機數
 import Tools
 
 def getValue(file = "./Word.json"):
-    with open(file) as word :
+    with open(file,encoding="utf-8") as word :
         data = json.load(word)#*按json的格式加載word文件到變量data中
     return data
 
